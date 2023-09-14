@@ -14,7 +14,11 @@ class Base_SetUp:
     @pytest.fixture(autouse=True)
     def precondition(self):
         ppt_obj = Properties()
-        ppt_obj.load(open("../config.properties"))
+        try:
+            ppt_obj.load(open("../config.properties"))
+        except:
+            ppt_obj.load(open("config.properties"))
+
         grid=ppt_obj["GRID"]
         grid_url=ppt_obj["GRID_URL"]
         browser=ppt_obj["BROWSER"]
